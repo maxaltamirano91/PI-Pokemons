@@ -7,11 +7,15 @@ module.exports = (sequelize) => {
     "pokemon",
     {
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+        validate: {
+          min: 1302,
+        },
       },
+
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -19,8 +23,8 @@ module.exports = (sequelize) => {
       },
 
       image: {
-        type: DataTypes.BLOB,
-        // type: DataTypes.STRING,
+        // type: DataTypes.BLOB,
+        type: DataTypes.STRING,
         unique: true,
         allowNull: false,
       },
