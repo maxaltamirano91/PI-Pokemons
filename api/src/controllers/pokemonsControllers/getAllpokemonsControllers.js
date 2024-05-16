@@ -29,51 +29,53 @@ const infoApi = async () => {
 
     return pokemon;
   } catch (error) {
+    console.log(error);
     throw Error(" Error al obtener información de los Pokemons ");
   }
 };
 
-const pushBdd = async () => {
-  try {
-    const api = await infoApi();
-    const result = await api.map((el) => {
-      return {
-        id: el.id,
-        name: el.name,
-        image: el.image,
-        hp: el.hp,
-        attack: el.attack,
-        defense: el.defense,
-        speed: el.speed,
-        height: el.height,
-        weight: el.weight,
-      };
-    });
+//! Función para pushear todos los pokemons de la API a la BBD*
+// const pushBdd = async () => {
+//   try {
+//     const api = await infoApi();
+//     const result = await api.map((el) => {
+//       return {
+//         id: el.id,
+//         name: el.name,
+//         image: el.image,
+//         hp: el.hp,
+//         attack: el.attack,
+//         defense: el.defense,
+//         speed: el.speed,
+//         height: el.height,
+//         weight: el.weight,
+//       };
+//     });
 
-    Pokemon.bulkCreate(result);
-  } catch (error) {
-    console.log(error);
-    throw new Error(" error al subir a la base de datos");
-  }
-};
+//     Pokemon.bulkCreate(result);
+//   } catch (error) {
+//     console.log(error);
+//     throw new Error(" error al subir a la base de datos");
+//   }
+// };
 
 // pushBdd();
-
-const allpokemons = async () => {
+//! -------------------------------------------------------------------
+const infoBDD = async () => {
   const pokemons = await Pokemon.findAll({
-    attributes: [
-      "name",
-      "hp",
-      "image",
-      "attack",
-      "defense",
-      "speed",
-      "height",
-      "weight",
-    ],
-    through: {
-      attributes: [],
-    },
+    // attributes: [
+    //   "name",
+    //   "hp",
+    //   "image",
+    //   "attack",
+    //   "defense",
+    //   "speed",
+    //   "height",
+    //   "weight",
+    // ],
+    // through: {
+    //   attributes: [],
+    // },
 
     include: {
       model: Type,
@@ -84,6 +86,13 @@ const allpokemons = async () => {
     },
   });
   return pokemons;
+};
+
+const allpokemons = async () => {
+  const api = await infoApi();
+  const bbd = await infoBDD();
+  const result = api.concat(bbd);
+  return result;
 };
 
 module.exports = allpokemons;
