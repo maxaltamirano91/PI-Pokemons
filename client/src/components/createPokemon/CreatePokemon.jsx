@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPokemon } from "../../redux/actions";
 
+import "./createPokemon.css";
+
 const CreatePokemon = () => {
   const dispatch = useDispatch();
 
@@ -99,104 +101,11 @@ const CreatePokemon = () => {
   };
 
   return (
-    // <div>
-    //   <form onSubmit={handleSubmit} className="createPokemon">
-    //     <div className="FlexContainer">
-    //       <label htmlFor="name">Name</label>
-    //       <input
-    //         type="text"
-    //         name="name"
-    //         onChange={handleChange}
-    //         value={form.name}
-    //       />
-    //       <p>{error.name}</p>
-
-    //       <label htmlFor="imagen">Ingresar Url de la imagen:</label>
-    //       <input
-    //         type="text"
-    //         id="imagen"
-    //         name="image"
-    //         placeholder="Ingrese la URL de la imagen"
-    //         onChange={handleChange}
-    //         value={form.image}
-    //       ></input>
-    //       <p>{error.image}</p>
-
-    //       <label htmlFor="hp">Hp</label>
-    //       <input
-    //         type="text"
-    //         name="hp"
-    //         onChange={handleChange}
-    //         value={form.hp}
-    //       />
-    //       <p>{error.hp}</p>
-
-    //       <label htmlFor="attack">Attack</label>
-    //       <input
-    //         type="text"
-    //         name="attack"
-    //         onChange={handleChange}
-    //         value={form.attack}
-    //       />
-    //       <p>{error.attack}</p>
-
-    //       <label htmlFor="defense">Defense</label>
-    //       <input
-    //         type="text"
-    //         name="defense"
-    //         onChange={handleChange}
-    //         value={form.defense}
-    //       />
-    //       <p>{error.defense}</p>
-
-    //       <label htmlFor="speed">Speed</label>
-    //       <input
-    //         type="text"
-    //         name="speed"
-    //         onChange={handleChange}
-    //         value={form.speed}
-    //       />
-    //       <p>{error.speed}</p>
-
-    //       <label htmlFor="height">Height</label>
-    //       <input
-    //         type="text"
-    //         name="height"
-    //         onChange={handleChange}
-    //         value={form.height}
-    //       />
-    //       <p>{error.height}</p>
-
-    //       <label htmlFor="weight">Weight</label>
-    //       <input
-    //         type="text"
-    //         name="weight"
-    //         onChange={handleChange}
-    //         value={form.weight}
-    //       />
-    //       <p>{error.weight}</p>
-
-    //       <label htmlFor="type">Type</label>
-    //       <input
-    //         type="text"
-    //         name="type"
-    //         onChange={handleChange}
-    //         value={form.type}
-    //       />
-    //       <p>{error.type}</p>
-    //     </div>
-
-    //     <button className="button2 " type="submit">
-    //       Create
-    //     </button>
-    //   </form>
-    // </div>
-
     <div className="form-container">
-      <p class="title">Create</p>
+      <p className="title">Create</p>
       <form onSubmit={handleSubmit} className="form">
         <div className="FlexContainer">
-          <div>
+          <div className="column">
             <div className="input-group">
               <label htmlFor="name">Name</label>
               <input
@@ -217,7 +126,7 @@ const CreatePokemon = () => {
                 placeholder="Ingrese la URL de la imagen"
                 onChange={handleChange}
                 value={form.image}
-              ></input>
+              />
               <p>{error.image}</p>
             </div>
 
@@ -254,7 +163,7 @@ const CreatePokemon = () => {
               <p>{error.defense}</p>
             </div>
           </div>
-          <div>
+          <div className="column">
             <div className="input-group">
               <label htmlFor="speed">Speed</label>
               <input

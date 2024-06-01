@@ -1,0 +1,46 @@
+.pokemon-card {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 300px;
+  height: 400px;
+  margin: 10px;
+  background-image: url("../card/img/611713-Artistic-Anime-Pokemon-Pokeball-copy-space-red.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: #ff13135b 0px 20px 30px 40px;
+}
+
+.pokemon-card:hover {
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  border-color: yellow;
+}
+
+.pokemon-img-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ajusta el espaciado entre las tarjetas */
+  margin: -10px;
+}
+
+.pokemon-img {
+  width: 100%;
+  height: 300px;
+}
+
+.pokemon-details {
+  padding: 10px;
+}
+
+.pokemon-name {
+  font-size: 35px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(192, 0, 0);
+  margin: 0;
+  text-decoration: none;
+}
+
+.link-no-underline {
+  text-decoration: none;
+}

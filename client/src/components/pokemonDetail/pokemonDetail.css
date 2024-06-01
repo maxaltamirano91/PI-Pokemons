@@ -1,0 +1,63 @@
+.allDetail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 6px;
+  grid-row-gap: px;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.img {
+  width: 100%;
+  height: 400px;
+}
+
+.Card {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 400px;
+  height: 500px;
+  margin: 10px;
+  background-image: url("../card/img/611713-Artistic-Anime-Pokemon-Pokeball-copy-space-red.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: #ff13135b 0px 20px 30px 40px;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+}
+
+.detail {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 400px;
+  height: 500px;
+  margin: 10px;
+  padding: 15px;
+  background-color: #ec0202c1;
+  background-size: cover;
+  background-position: center;
+  box-shadow: #ff13135b 0px 20px 30px 40px;
+}
+
+.detail .name {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 50px;
+  color: rgb(255, 179, 0);
+}
+
+.h10 {
+  border-radius: 2px color yellow;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 15px;
+}

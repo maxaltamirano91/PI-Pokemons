@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import "./Card.css";
+
 const Card = ({ pokemon }) => {
   const { name, image, id, hp, attack, defense, speed, height, weight } =
     pokemon;

@@ -1,0 +1,18 @@
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribuir las columnas alrededor */
+}
+
+.Card {
+  width: 30%; /* Ancho de cada tarjeta */
+  margin-bottom: 20px; /* Espacio entre filas */
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}

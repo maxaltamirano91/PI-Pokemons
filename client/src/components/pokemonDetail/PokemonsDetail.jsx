@@ -6,6 +6,8 @@ import { getPokemonDetail, clear } from "../../redux/actions";
 
 import NavBar from "../navBar/NavBar";
 
+import "./pokemonDetail.css";
+
 const PokemonsDetail = () => {
   const { id } = useParams();
 

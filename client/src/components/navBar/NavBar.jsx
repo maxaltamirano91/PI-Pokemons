@@ -1,6 +1,8 @@
 import SearchBar from "../searchBar/SearchBar";
 import { Link } from "react-router-dom";
 
+import "./navBar.css";
+
 function NavBar({ handleChange, handleSubmit }) {
   return (
     <div className="navBar">
