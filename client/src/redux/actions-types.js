@@ -5,3 +5,4 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const CLEAR_POKEMON = "CLEAR_POKEMON";
 export const CREATE_POKEMON = "CREATE_POKEMON";
 export const ORDER = "ORDER";
+export const BYATTACK = "BYATTACK";

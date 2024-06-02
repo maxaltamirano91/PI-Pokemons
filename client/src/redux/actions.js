@@ -8,6 +8,7 @@ import {
   CLEAR_POKEMON,
   CREATE_POKEMON,
   ORDER,
+  BYATTACK,
 } from "./actions-types";
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -97,9 +98,16 @@ export const clearPokemon = () => {
 };
 
 export const ordernamiento = (sort) => {
-  console.log(sort + " console de sort");
   return {
     type: ORDER,
     payload: sort,
+  };
+};
+
+export const attackFunction = (payload) => {
+  console.log(payload + " console de sort");
+  return {
+    type: BYATTACK,
+    payload: payload,
   };
 };

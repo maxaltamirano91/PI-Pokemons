@@ -6,6 +6,7 @@ import {
   CLEAR_POKEMON,
   CREATE_POKEMON,
   ORDER,
+  BYATTACK,
 } from "./actions-types";
 
 const initialState = {
@@ -58,6 +59,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: byOrder,
+      };
+    case BYATTACK:
+      const byAtaque = [...state.pokemon];
+      if (action.payload === "AttakAsc") {
+        byAtaque.sort((a, b) => a.attack - b.attack);
+      } else if (action.payload === "AttakDes") {
+        byAtaque.sort((a, b) => b.attack - a.attack);
+      }
+      return {
+        ...state,
+        pokemon: byAtaque,
       };
     default:
       return state;

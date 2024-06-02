@@ -5,6 +5,7 @@ import {
   getPokemonByName,
   clearPokemon,
   ordernamiento,
+  attackFunction,
 } from "../../redux/actions";
 
 import Cards from "../cards/Cards";
@@ -44,6 +45,10 @@ const Pokemons = () => {
     dispatch(ordernamiento(event.target.value));
   };
 
+  const handleAttak = (event) => {
+    dispatch(attackFunction(event.target.value));
+  };
+
   return (
     <div>
       <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
@@ -60,6 +65,17 @@ const Pokemons = () => {
               </option>
               <option className="buttonFilter" value="des">
                 Descendente
+              </option>
+            </select>
+            <select
+              className="buttonFilter"
+              onChange={() => handleAttak(event)}
+            >
+              <option className="buttonFilter" value="AttakAsc">
+                AttakAsc
+              </option>
+              <option className="buttonFilter" value="AttakDes">
+                AttakDes
               </option>
             </select>
           </div>
