@@ -39,43 +39,8 @@ const PokemonsDetail = () => {
           <h3 className="h10">Weight-{pokemonDetail[0]?.weight}</h3>
         </div>
       </div>
-
-      {/* <div className="card">
-        <img className="profile-pic" src={pokemonDetail[0]?.image} alt="" />
-        <div className="bottom">
-          <div className="content">
-            <span className="name">{pokemonDetail[0]?.name}</span>
-            <span className="about-me">
-              <p>{pokemonDetail[0]?.hp}Hp</p>
-              <p>{pokemonDetail[0]?.attack}Attack </p>
-              <p>{pokemonDetail[0]?.defense}Defense </p>
-              <p>{pokemonDetail[0]?.speed}Speed </p>
-              <p>{pokemonDetail[0]?.height}Height </p>
-              <p>{pokemonDetail[0]?.weight}Weight </p>
-            </span>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
 
 export default PokemonsDetail;
-
-{
-  /* <div class="card">
-        <button class="mail">
-</svg>
-        </button>
-        <div class="profile-pic">
-        </div>
-        <div class="bottom">
-            <div class="content">
-                <span class="name">My Name</span>
-                <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls </span>
-            </div>
-           <div class="bottom-bottom">
-            <div class="social-links-container">
-        </div>
-    </div> */
-}

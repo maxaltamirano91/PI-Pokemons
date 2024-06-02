@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 
 const Card = ({ pokemon }) => {
-  const { name, image, id, hp, attack, defense, speed, height, weight } =
-    pokemon;
+  const { name, image, id, types } = pokemon;
+
+  let typesArray = [];
+  if (typeof types === "string") {
+    typesArray = types.split(", ");
+  } else if (Array.isArray(types)) {
+    typesArray = types.map((type) => type.name);
+  }
+
   return (
     <div>
       <div key={id} className="pokemon-card">
@@ -17,16 +24,21 @@ const Card = ({ pokemon }) => {
             )}
           </div>
           <div className="pokemon-details">
+            <div>
+              Type:
+              {typesArray.length > 0 ? (
+                typesArray.map((type, index) => (
+                  <p key={index} className="pokemon-types">
+                    {type}
+                  </p>
+                ))
+              ) : (
+                <p>No hay tipos</p>
+              )}
+            </div>
             <div className="pokemon-name">
               <p>{name}</p>
             </div>
-
-            {/* <p>Healt {hp}</p>
-          <p>Attack {attack}</p>
-          <p>Defense {defense}</p>
-          <p>Speed {speed}</p>
-          <p>Height {height}</p>
-          <p>Weight {weight}</p> */}
           </div>
         </Link>
       </div>

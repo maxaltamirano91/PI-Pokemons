@@ -7,11 +7,15 @@ import {
   CREATE_POKEMON,
   ORDER,
   BYATTACK,
+  BYTYPE,
+  GET_ALL_TYPES,
 } from "./actions-types";
 
 const initialState = {
   pokemon: [],
   pokemonsDetail: [],
+  typos: [],
+  allPokemon: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +24,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: action.payload,
+        allPokemon: action.payload,
       };
     case GET_POKEMON_DETAIL:
       return {
@@ -31,6 +36,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: [action.payload],
+      };
+
+    case GET_ALL_TYPES:
+      return {
+        ...state,
+        typos: action.payload,
       };
     case CLEAR_DETAIL:
       return {
@@ -47,6 +58,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: [action.payload],
+        allPokemon: [action.payload],
       };
 
     case ORDER:
@@ -71,6 +83,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemon: byAtaque,
       };
+    case BYTYPE:
+      const allPokemon = state.allPokemon;
+      const filter =
+        action.payload === "all"
+          ? allPokemon
+          : allPokemon.filter((el) => el.types.includes(action.payload));
+      return {
+        ...state,
+        pokemon: filter,
+      };
+
     default:
       return state;
   }

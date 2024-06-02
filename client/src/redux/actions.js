@@ -9,6 +9,8 @@ import {
   CREATE_POKEMON,
   ORDER,
   BYATTACK,
+  BYTYPE,
+  GET_ALL_TYPES,
 } from "./actions-types";
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -23,6 +25,19 @@ export const getAllPokemons = () => async (dispatch) => {
     });
   } catch {
     throw new Error("no se encontraron pokemons");
+  }
+};
+
+export const getAllTypes = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:3001/type");
+    const types = response.data.alltypes;
+    dispatch({
+      type: GET_ALL_TYPES,
+      payload: types,
+    });
+  } catch {
+    throw new Error("no se encontraron tipos de pokemons");
   }
 };
 
@@ -48,7 +63,6 @@ export const getPokemonByName = (name) => {
         `http://localhost:3001/pokemons?name=${name}`
       );
       const pokemon = response.data.pokemonName;
-      console.log(" Pokemons de la accion ", pokemon);
       await dispatch({
         type: GET_POKEMON_BY_NAME,
         payload: pokemon,
@@ -105,9 +119,15 @@ export const ordernamiento = (sort) => {
 };
 
 export const attackFunction = (payload) => {
-  console.log(payload + " console de sort");
   return {
     type: BYATTACK,
+    payload: payload,
+  };
+};
+
+export const orderByType = (payload) => {
+  return {
+    type: BYTYPE,
     payload: payload,
   };
 };

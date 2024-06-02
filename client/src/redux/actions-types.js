@@ -1,8 +1,10 @@
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
 export const GET_POKEMON_DETAIL = "GET_POKEMON_DETAIL";
 export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
+export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const CLEAR_POKEMON = "CLEAR_POKEMON";
 export const CREATE_POKEMON = "CREATE_POKEMON";
 export const ORDER = "ORDER";
 export const BYATTACK = "BYATTACK";
+export const BYTYPE = "BYTYPE";

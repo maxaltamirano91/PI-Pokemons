@@ -3,7 +3,6 @@ import Card from "../card/Card";
 import "./cards.css";
 
 const Cards = ({ allPokemons }) => {
-  console.log(" ESTE ES EL CONGOLE LOG DE CARDS", allPokemons);
   const pokemons = allPokemons;
 
   return (
