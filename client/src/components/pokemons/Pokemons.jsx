@@ -4,6 +4,7 @@ import {
   getAllPokemons,
   getPokemonByName,
   clearPokemon,
+  ordernamiento,
 } from "../../redux/actions";
 
 import Cards from "../cards/Cards";
@@ -35,26 +36,13 @@ const Pokemons = () => {
     };
   }, [dispatch]);
 
-  const handleSortByNameAsc = () => {
-    dispatch(getAllPokemons("name", "asc"));
-  };
-
-  const handleSortByNameDesc = () => {
-    dispatch(getAllPokemons("name", "desc"));
-  };
-
-  const handleSortByAttackAsc = () => {
-    dispatch(getAllPokemons("attack", "asc"));
-  };
-
-  const handleSortByAttackDesc = () => {
-    dispatch(getAllPokemons("attack", "desc"));
-  };
-
   const handleSearch = (results) => {
     setSearchResult(results);
   };
-  console.log(" console de Pokemons", pokemons);
+
+  const handleOrder = (event) => {
+    dispatch(ordernamiento(event.target.value));
+  };
 
   return (
     <div>
@@ -63,18 +51,17 @@ const Pokemons = () => {
         <div className="dropdown">
           <span className="span">Filter</span>
           <div className="dropdown-content">
-            <button className="buttonFilter" onClick={handleSortByNameAsc}>
-              By Name Asc
-            </button>
-            <button className="buttonFilter" onClick={handleSortByNameDesc}>
-              By Name Desc
-            </button>
-            <button className="buttonFilter" onClick={handleSortByAttackAsc}>
-              By Attack Asc
-            </button>
-            <button className="buttonFilter" onClick={handleSortByAttackDesc}>
-              By Attack Desc
-            </button>
+            <select
+              className="buttonFilter"
+              onChange={() => handleOrder(event)}
+            >
+              <option className="buttonFilter" value="asc">
+                Ascendente
+              </option>
+              <option className="buttonFilter" value="des">
+                Descendente
+              </option>
+            </select>
           </div>
         </div>
       </div>

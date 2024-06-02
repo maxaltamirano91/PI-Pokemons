@@ -5,6 +5,7 @@ import {
   GET_POKEMON_BY_NAME,
   CLEAR_POKEMON,
   CREATE_POKEMON,
+  ORDER,
 } from "./actions-types";
 
 const initialState = {
@@ -45,6 +46,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: [action.payload],
+      };
+
+    case ORDER:
+      const byOrder = [...state.pokemon];
+      if (action.payload === "asc") {
+        byOrder.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (action.payload === "des") {
+        byOrder.sort((a, b) => b.name.localeCompare(a.name));
+      }
+      return {
+        ...state,
+        pokemon: byOrder,
       };
     default:
       return state;

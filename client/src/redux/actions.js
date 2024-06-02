@@ -7,6 +7,7 @@ import {
   GET_POKEMON_BY_NAME,
   CLEAR_POKEMON,
   CREATE_POKEMON,
+  ORDER,
 } from "./actions-types";
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -92,5 +93,13 @@ export const clearPokemon = () => {
       type: CLEAR_POKEMON,
       payload: data,
     });
+  };
+};
+
+export const ordernamiento = (sort) => {
+  console.log(sort + " console de sort");
+  return {
+    type: ORDER,
+    payload: sort,
   };
 };
