@@ -35,11 +35,14 @@
 }
 
 .pokemon-details {
-  padding: 10px;
+  font-size: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(0, 0, 0);
+  padding: 3px;
 }
 
 .pokemon-name {
-  font-size: 25px;
+  font-size: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(0, 0, 0);
   margin: 0;

@@ -13,12 +13,11 @@ const PokemonsDetail = () => {
 
   const dispatch = useDispatch();
   const pokemonDetail = useSelector((state) => state.pokemonsDetail);
-  console.log(pokemonDetail + " console DETAIL");
 
   useEffect(() => {
     dispatch(getPokemonDetail(id));
     return () => {
-      dispatch(clear()); //
+      dispatch(clear());
     };
   }, [id, dispatch]);
 
@@ -39,7 +38,6 @@ const PokemonsDetail = () => {
           <h3 className="h10">Height: {pokemonDetail[0]?.height}</h3>
           <h3 className="h10">Weight: {pokemonDetail[0]?.weight}</h3>
           <h3 className="h10">
-            {" "}
             Type:
             {pokemonDetail[0]?.types.map((el, index) => (
               <span key={index}>{el}</span>
