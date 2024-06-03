@@ -1,4 +1,5 @@
 import axios from "axios";
+// const { Pokemon, Type } = require("../../../api/src/db");
 
 import {
   GET_ALL_POKEMONS,
@@ -11,6 +12,7 @@ import {
   BYATTACK,
   BYTYPE,
   GET_ALL_TYPES,
+  BBDAPI,
 } from "./actions-types";
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -128,6 +130,14 @@ export const attackFunction = (payload) => {
 export const orderByType = (payload) => {
   return {
     type: BYTYPE,
+    payload: payload,
+  };
+};
+
+export const byBddOrApi = (payload) => {
+  console.log(payload + " console API o BBD");
+  return {
+    type: BBDAPI,
     payload: payload,
   };
 };

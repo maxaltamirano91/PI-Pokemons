@@ -9,6 +9,7 @@ import {
   BYATTACK,
   BYTYPE,
   GET_ALL_TYPES,
+  BBDAPI,
 } from "./actions-types";
 
 const initialState = {
@@ -83,16 +84,49 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemon: byAtaque,
       };
+    // case BYTYPE:
+    //   const allPokemon = state.allPokemon;
+    //   const filter =
+    //     action.payload === "all"
+    //       ? allPokemon
+    //       : allPokemon.filter((el) => el.types.includes(action.payload));
+    //   return {
+    //     ...state,
+    //     pokemon: filter,
+    //   };
     case BYTYPE:
       const allPokemon = state.allPokemon;
       const filter =
         action.payload === "all"
           ? allPokemon
-          : allPokemon.filter((el) => el.types.includes(action.payload));
+          : allPokemon.filter((el) =>
+              el.types.some((type) => type.split(", ").includes(action.payload))
+            );
       return {
         ...state,
         pokemon: filter,
       };
+
+    case BBDAPI:
+      if (action.payload === "bbd") {
+        const bbd = state.allPokemon;
+        const filtro = bbd.filter((el) => {
+          return el.createdInDb;
+        });
+        return {
+          ...state,
+          pokemon: filtro,
+        };
+      } else {
+        const api = state.allPokemon;
+        const filtro = api.filter((el) => {
+          return !el.createdInDb;
+        });
+        return {
+          ...state,
+          pokemon: filtro,
+        };
+      }
 
     default:
       return state;

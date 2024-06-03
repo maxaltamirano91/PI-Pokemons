@@ -8,3 +8,4 @@ export const CREATE_POKEMON = "CREATE_POKEMON";
 export const ORDER = "ORDER";
 export const BYATTACK = "BYATTACK";
 export const BYTYPE = "BYTYPE";
+export const BBDAPI = "BBDAPI";

@@ -7,7 +7,7 @@ import {
   ordernamiento,
   attackFunction,
   orderByType,
-  getAllTypes,
+  byBddOrApi,
 } from "../../redux/actions";
 
 import Cards from "../cards/Cards";
@@ -19,7 +19,6 @@ const Pokemons = () => {
   const dispatch = useDispatch();
 
   const pokemons = useSelector((state) => state.pokemon);
-  const type = useSelector((state) => state.type);
 
   const [searchResult, setSearchResult] = useState("");
 
@@ -56,6 +55,11 @@ const Pokemons = () => {
     dispatch(orderByType(event.target.value));
   };
 
+  const handleBbdApi = (event) => {
+    event.preventDefault();
+    dispatch(byBddOrApi(event.target.value));
+  };
+
   return (
     <div>
       <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
@@ -68,10 +72,21 @@ const Pokemons = () => {
               onChange={() => handleOrder(event)}
             >
               <option className="buttonFilter" value="asc">
-                Ascendente
+                A-Z
               </option>
               <option className="buttonFilter" value="des">
-                Descendente
+                Z-A
+              </option>
+            </select>
+            <select
+              className="buttonFilter"
+              onChange={() => handleBbdApi(event)}
+            >
+              <option className="buttonFilter" value="bbd">
+                BBD
+              </option>
+              <option className="buttonFilter" value="api">
+                API
               </option>
             </select>
             <select
@@ -88,7 +103,7 @@ const Pokemons = () => {
 
             <select className="buttonFilter" onChange={() => handleType(event)}>
               <option className="buttonFilter" value="all">
-                All
+                Type
               </option>
               <option className="buttonFilter" value="fire">
                 fire
