@@ -48,6 +48,9 @@ export const getPokemonDetail = (id) => {
     try {
       const { data } = await axios.get(`http://localhost:3001/pokemons/${id}`);
       const pokemonDetail = data.pokemonId;
+
+      console.log(pokemonDetail);
+
       await dispatch({
         type: GET_POKEMON_DETAIL,
         payload: pokemonDetail,

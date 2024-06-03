@@ -13,6 +13,7 @@ const PokemonsDetail = () => {
 
   const dispatch = useDispatch();
   const pokemonDetail = useSelector((state) => state.pokemonsDetail);
+  console.log(pokemonDetail + " console DETAIL");
 
   useEffect(() => {
     dispatch(getPokemonDetail(id));
@@ -31,12 +32,19 @@ const PokemonsDetail = () => {
         <div className="detail">
           <span className="name">{pokemonDetail[0]?.name}</span>
 
-          <h3 className="h10">Hp-{pokemonDetail[0]?.hp}</h3>
-          <h3 className="h10">Attack-{pokemonDetail[0]?.attack}</h3>
-          <h3 className="h10">Defense-{pokemonDetail[0]?.defense}</h3>
-          <h3 className="h10">Speed-{pokemonDetail[0]?.speed}</h3>
-          <h3 className="h10">Height-{pokemonDetail[0]?.height}</h3>
-          <h3 className="h10">Weight-{pokemonDetail[0]?.weight}</h3>
+          <h3 className="h10">Hp: {pokemonDetail[0]?.hp}</h3>
+          <h3 className="h10">Attack: {pokemonDetail[0]?.attack}</h3>
+          <h3 className="h10">Defense: {pokemonDetail[0]?.defense}</h3>
+          <h3 className="h10">Speed: {pokemonDetail[0]?.speed}</h3>
+          <h3 className="h10">Height: {pokemonDetail[0]?.height}</h3>
+          <h3 className="h10">Weight: {pokemonDetail[0]?.weight}</h3>
+          <h3 className="h10">
+            {" "}
+            Type:
+            {pokemonDetail[0]?.types.map((el, index) => (
+              <span key={index}>{el}</span>
+            ))}
+          </h3>
         </div>
       </div>
     </div>

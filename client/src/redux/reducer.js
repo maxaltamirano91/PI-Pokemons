@@ -84,16 +84,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemon: byAtaque,
       };
-    // case BYTYPE:
-    //   const allPokemon = state.allPokemon;
-    //   const filter =
-    //     action.payload === "all"
-    //       ? allPokemon
-    //       : allPokemon.filter((el) => el.types.includes(action.payload));
-    //   return {
-    //     ...state,
-    //     pokemon: filter,
-    //   };
+
     case BYTYPE:
       const allPokemon = state.allPokemon;
       const filter =
