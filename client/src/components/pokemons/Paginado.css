@@ -1,0 +1,28 @@
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.buttonFilter {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonFilter:hover {
+  background-color: #0056b3;
+}

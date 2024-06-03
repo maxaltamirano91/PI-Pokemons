@@ -32,12 +32,17 @@ const Login = () => {
 
     if (!form.email) newErrors.email = "Ingresar un email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      newErrors.email = "Email erroneo";
+      newErrors.email = "El tipo de email no es correcto";
 
-    if (!form.password) newErrors.password = "Ingresar una contraseña";
-    else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{7,}$/.test(form.password))
+    if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{7,}$/.test(form.password))
       newErrors.password =
         "La contraseña debe tener al menos 7 caracteres, una letra mayúscula y un símbolo";
+    if (!form.password) newErrors.password = "Ingresar una contraseña";
+
+    // if (!form.password) newErrors.password = "Ingresar una contraseña";
+    // else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{7,}$/.test(form.password))
+    //   newErrors.password =
+    //     "La contraseña debe tener al menos 7 caracteres, una letra mayúscula y un símbolo";
 
     setError(newErrors);
   };
@@ -52,6 +57,8 @@ const Login = () => {
     ) {
       setAccess(true);
       navigate("/home");
+    } else {
+      alert(" USUARIO INCORRECTO");
     }
   }
 

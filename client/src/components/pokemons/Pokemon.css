@@ -3,8 +3,9 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 6px;
-  grid-row-gap: px;
-  margin-bottom: 30px;
+  grid-row-gap: 1px;
+  margin-bottom: 20px;
+  padding-left: 65px;
 }
 .span {
   color: rgb(255, 191, 0);

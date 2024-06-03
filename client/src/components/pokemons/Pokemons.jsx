@@ -12,6 +12,7 @@ import {
 
 import Cards from "../cards/Cards";
 import NavBar from "../navBar/NavBar";
+import Paginado from "./Paginado";
 
 import "./Pokemon.css";
 
@@ -29,6 +30,7 @@ const Pokemons = () => {
     } else {
       setSearchResult(event.target.value);
     }
+    console.log(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -62,6 +64,20 @@ const Pokemons = () => {
   const handleBbdApi = (event) => {
     event.preventDefault();
     dispatch(byBddOrApi(event.target.value));
+  };
+
+  const [paginaActual, setPaginaActual] = useState(1);
+  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
+  const indexUltimoPokemon = paginaActual * pokemonsPorPagina;
+  const indexPrimerPokemon = indexUltimoPokemon - pokemonsPorPagina;
+  const pokemonsActuales = pokemons.slice(
+    indexPrimerPokemon,
+    indexUltimoPokemon
+  );
+
+  const paginado = (numeroPagina) => {
+    setPaginaActual(numeroPagina);
+    console.log(numeroPagina + " console NUMERO PAGINA");
   };
 
   return (
@@ -161,9 +177,14 @@ const Pokemons = () => {
           </div>
         </div>
       </div>
+      <Paginado
+        pokemonsPorPagina={pokemonsPorPagina}
+        pokemons={pokemons.length}
+        paginado={paginado}
+      />
 
       <div>
-        <Cards allPokemons={pokemons} />
+        <Cards allPokemons={pokemonsActuales} />
       </div>
     </div>
   );
