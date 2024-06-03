@@ -5,7 +5,7 @@ const { TableHints } = require("sequelize");
 const infoApi = async () => {
   try {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon/?limit=30"
+      "https://pokeapi.co/api/v2/pokemon/?limit=50"
     );
 
     const allTypes = response.data.results;
@@ -24,6 +24,7 @@ const infoApi = async () => {
         speed: e.data.stats[5].base_stat,
         height: e.data.height,
         weight: e.data.weight,
+        types: [e.data.types.map((typeInfo) => typeInfo.type.name).join(", ")],
       };
     });
 
@@ -63,20 +64,6 @@ const infoApi = async () => {
 //! -------------------------------------------------------------------
 const infoBDD = async () => {
   const pokemons = await Pokemon.findAll({
-    // attributes: [
-    //   "name",
-    //   "hp",
-    //   "image",
-    //   "attack",
-    //   "defense",
-    //   "speed",
-    //   "height",
-    //   "weight",
-    // ],
-    // through: {
-    //   attributes: [],
-    // },
-
     include: {
       model: Type,
       attributes: ["name"],
@@ -85,7 +72,23 @@ const infoBDD = async () => {
       },
     },
   });
-  return pokemons;
+  const newP = await pokemons.map((el) => {
+    return {
+      id: el.id,
+      name: el.name,
+      image: el.image,
+      hp: el.name,
+      attack: el.attack,
+      defense: el.defense,
+      speed: el.speed,
+      height: el.height,
+      weight: el.weight,
+      types: el.types ? el.types.map((type) => type.name) : [],
+      createdInDb: el.createdInDb,
+    };
+  });
+  return newP;
+  // return pokemons;
 };
 
 const allpokemons = async () => {

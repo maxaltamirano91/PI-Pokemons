@@ -10,8 +10,15 @@ const bbdName = async () => {
         attributes: [],
       },
     },
+    include: {
+      model: Type,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+    },
   });
-  console.log(bdd);
+
   return bdd;
 };
 
@@ -26,7 +33,20 @@ const allPokemonsNamesontrollers = async (name) => {
     });
 
     if (nombre.length > 0) {
-      return nombre;
+      const final = nombre.map((pokemon) => ({
+        id: pokemon.id,
+        name: pokemon.name,
+        image: pokemon.image,
+        hp: pokemon.hp,
+        attack: pokemon.attack,
+        defense: pokemon.defense,
+        speed: pokemon.speed,
+        height: pokemon.height,
+        weight: pokemon.weight,
+        types: pokemon.types.map((type) => type.name),
+      }));
+
+      return final[0];
     } else {
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${name}`
@@ -42,6 +62,9 @@ const allPokemonsNamesontrollers = async (name) => {
         speed: response.data.stats[5].base_stat,
         height: response.data.height,
         weight: response.data.weight,
+        types: [
+          response.data.types.map((typeInfo) => typeInfo.type.name).join(", "),
+        ],
       };
 
       return pokemonFromAPI;
