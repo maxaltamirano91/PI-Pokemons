@@ -24,7 +24,11 @@ const Pokemons = () => {
 
   const handleChange = (event) => {
     event.preventDefault();
-    setSearchResult(event.target.value);
+    if (event.target.value === "") {
+      dispatch(getAllPokemons());
+    } else {
+      setSearchResult(event.target.value);
+    }
   };
 
   const handleSubmit = (event) => {
