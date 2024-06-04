@@ -24,7 +24,8 @@ const infoApi = async () => {
         speed: e.data.stats[5].base_stat,
         height: e.data.height,
         weight: e.data.weight,
-        types: [e.data.types.map((typeInfo) => typeInfo.type.name).join(", ")],
+        // types: [e.data.types.map((typeInfo) => typeInfo.type.name).join(", ")],
+        types: e.data.types.map((typeInfo) => typeInfo.type.name),
       };
     });
 
