@@ -39,11 +39,6 @@ const Login = () => {
         "La contraseña debe tener al menos 7 caracteres, una letra mayúscula y un símbolo";
     if (!form.password) newErrors.password = "Ingresar una contraseña";
 
-    // if (!form.password) newErrors.password = "Ingresar una contraseña";
-    // else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{7,}$/.test(form.password))
-    //   newErrors.password =
-    //     "La contraseña debe tener al menos 7 caracteres, una letra mayúscula y un símbolo";
-
     setError(newErrors);
   };
 
@@ -58,7 +53,7 @@ const Login = () => {
       setAccess(true);
       navigate("/home");
     } else {
-      alert(" USUARIO INCORRECTO");
+      alert(" USUARIO INCORRECTO, INTENTE NUEVAMENTE");
     }
   }
 
@@ -93,7 +88,7 @@ const Login = () => {
               Password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               onChange={handleChange}
               value={form.password}

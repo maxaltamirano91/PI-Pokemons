@@ -14,6 +14,12 @@
   margin: 0 5px;
 }
 
+.page-currten {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
 .buttonFilter:hover {
   background-color: var(--color-orange);
   color: var(--color-blue);
@@ -22,4 +28,8 @@
 .buttonFilter.active {
   background-color: var(--color-orange);
   color: var(--color-blue);
+}
+
+.buttonActive {
+  color: blue;
 }

@@ -10,7 +10,6 @@ import {
   BYTYPE,
   GET_ALL_TYPES,
   BBDAPI,
-  RELOAD,
 } from "./actions-types";
 
 const initialState = {
@@ -18,7 +17,8 @@ const initialState = {
   pokemonsDetail: [],
   typos: [],
   allPokemon: [],
-  filtro: [],
+  typeFilter: "all",
+  pokemonFiltrado: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,6 +46,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         typos: action.payload,
       };
+
     case CLEAR_DETAIL:
       return {
         ...state,
@@ -93,60 +94,42 @@ const reducer = (state = initialState, action) => {
         action.payload === "all"
           ? allPokemon
           : allPokemon.filter((el) =>
-              el.types.some((type) => type.split(", ").includes(action.payload))
+              el.types.some((type) => type.includes(action.payload))
             );
       return {
         ...state,
         pokemon: filter,
-        filtro: filter,
+        typeFilter: action.payload,
+        pokemonFiltrado: filter,
       };
 
-    // case RELOAD:
-    //   return {
-    //     ...state,
-    //   };
-
     case BBDAPI:
-      if (state.filtro) {
-        const bd = state.filtro;
-        if (action.payload === "bbd") {
-          const filtro = bd.filter((el) => {
-            return el.createdInDb;
-          });
-          return {
-            ...state,
-            pokemon: filtro,
-          };
-        } else {
-          const ap = state.filtro;
-          const filtro = ap.filter((el) => {
-            return !el.createdInDb;
-          });
-          return {
-            ...state,
-            pokemon: filtro,
-          };
-        }
+      if (state.typeFilter !== "all") {
+        const fil =
+          action.payload === "bbd"
+            ? state.pokemonFiltrado.filter((el) => {
+                return el.createdInDb;
+              })
+            : state.pokemonFiltrado.filter((el) => {
+                return !el.createdInDb;
+              });
+        return {
+          ...state,
+          pokemon: action.payload === "all" ? state.pokemonFiltrado : fil,
+        };
       } else {
-        const bbd = state.allPokemon;
-        if (action.payload === "bbd") {
-          const filtro = bbd.filter((el) => {
-            return el.createdInDb;
-          });
-          return {
-            ...state,
-            pokemon: filtro,
-          };
-        } else {
-          const api = state.allPokemon;
-          const filtro = api.filter((el) => {
-            return !el.createdInDb;
-          });
-          return {
-            ...state,
-            pokemon: filtro,
-          };
-        }
+        const filterOrigen =
+          action.payload === "bbd"
+            ? state.allPokemon.filter((el) => {
+                return el.createdInDb;
+              })
+            : state.allPokemon.filter((el) => {
+                return !el.createdInDb;
+              });
+        return {
+          ...state,
+          pokemon: action.payload === "all" ? state.allPokemon : filterOrigen,
+        };
       }
 
     default:

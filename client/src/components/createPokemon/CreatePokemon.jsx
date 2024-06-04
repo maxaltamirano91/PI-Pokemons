@@ -1,11 +1,17 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createPokemon } from "../../redux/actions";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createPokemon, getAllTypes } from "../../redux/actions";
 
 import "./createPokemon.css";
 
 const CreatePokemon = () => {
   const dispatch = useDispatch();
+
+  const typePokemon = useSelector((state) => state.typos);
+
+  useEffect(() => {
+    dispatch(getAllTypes());
+  }, [dispatch]);
 
   const [form, setForm] = useState({
     name: "",
@@ -213,37 +219,20 @@ const CreatePokemon = () => {
 
           <div className="input-group">
             <label htmlFor="type">Type</label>
-            {/* <input
-              type="text"
-              name="type"
-              onChange={handleChange}
-              value={form.type}
-            /> */}
             <select
               className="input-group"
               name="type"
               value={form.type}
               onChange={handleChange}
             >
-              <option value="rock">rock</option>
-              <option value="water">water</option>
-              <option value="psychic">psychic</option>
-              <option value="unknown">unknown</option>
-              <option value="normal">normal</option>
-              <option value="flying">flying</option>
-              <option value="steel">steel</option>
-              <option value="dark">dark</option>
-              <option value="fighting">fighting</option>
-              <option value="ghost">ghost</option>
-              <option value="electric">electric</option>
-              <option value="ground">ground</option>
-              <option value="bug">bug</option>
-              <option value="grass">grass</option>
-              <option value="ice">ice</option>
-              <option value="stellar">stellar</option>
-              <option value="poison">poison</option>
-              <option value="fire">fire</option>
-              <option value="dragon">dragon</option>
+              <option value="all">All Types</option>
+              {typePokemon
+                ? typePokemon.map((t) => (
+                    <option key={t.id} value={t.name}>
+                      {t.name}
+                    </option>
+                  ))
+                : []}
             </select>
             <p>{error.type}</p>
           </div>

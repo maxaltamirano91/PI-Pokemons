@@ -8,7 +8,6 @@ import {
   attackFunction,
   orderByType,
   byBddOrApi,
-  reloadFilter,
 } from "../../redux/actions";
 
 import Cards from "../cards/Cards";
@@ -18,11 +17,25 @@ import Paginado from "./Paginado";
 import "./Pokemon.css";
 
 const Pokemons = () => {
-  const dispatch = useDispatch();
-
   const pokemons = useSelector((state) => state.pokemon);
 
+  const dispatch = useDispatch();
+
   const [searchResult, setSearchResult] = useState("");
+
+  const [paginaActual, setPaginaActual] = useState(1);
+  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
+  const indexUltimoPokemon = paginaActual * pokemonsPorPagina;
+  const indexPrimerPokemon = indexUltimoPokemon - pokemonsPorPagina;
+  const pokemonsActuales = pokemons.slice(
+    indexPrimerPokemon,
+    indexUltimoPokemon
+  );
+
+  const paginado = (numeroPagina) => {
+    setPaginaActual(numeroPagina);
+    console.log(numeroPagina + " console NUMERO PAGINA");
+  };
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -52,38 +65,23 @@ const Pokemons = () => {
 
   const handleOrder = (event) => {
     dispatch(ordernamiento(event.target.value));
+    setPaginaActual(1);
   };
 
   const handleAttak = (event) => {
     dispatch(attackFunction(event.target.value));
+    setPaginaActual(1);
   };
 
   const handleType = (event) => {
     dispatch(orderByType(event.target.value));
+    setPaginaActual(1);
   };
 
   const handleBbdApi = (event) => {
     event.preventDefault();
     dispatch(byBddOrApi(event.target.value));
-  };
-
-  const handleReload = (e) => {
-    e.preventDefault();
-    dispatch(getAllPokemons());
-  };
-
-  const [paginaActual, setPaginaActual] = useState(1);
-  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
-  const indexUltimoPokemon = paginaActual * pokemonsPorPagina;
-  const indexPrimerPokemon = indexUltimoPokemon - pokemonsPorPagina;
-  const pokemonsActuales = pokemons.slice(
-    indexPrimerPokemon,
-    indexUltimoPokemon
-  );
-
-  const paginado = (numeroPagina) => {
-    setPaginaActual(numeroPagina);
-    console.log(numeroPagina + " console NUMERO PAGINA");
+    setPaginaActual(1);
   };
 
   return (
@@ -119,7 +117,7 @@ const Pokemons = () => {
 
             <select className="buttonFilter" onChange={() => handleType(event)}>
               <option className="buttonFilter" value="all">
-                Type
+                All Types
               </option>
               <option className="buttonFilter" value="fire">
                 fire
@@ -174,6 +172,9 @@ const Pokemons = () => {
               className="buttonFilter"
               onChange={() => handleBbdApi(event)}
             >
+              <option className="buttonFilter" value="all">
+                All
+              </option>
               <option className="buttonFilter" value="bbd">
                 BBD
               </option>
@@ -181,13 +182,11 @@ const Pokemons = () => {
                 API
               </option>
             </select>
-            <button className="buttonFilter" onClick={(e) => [handleReload(e)]}>
-              Reload
-            </button>
           </div>
         </div>
       </div>
       <Paginado
+        paginaActual={paginaActual}
         pokemonsPorPagina={pokemonsPorPagina}
         pokemons={pokemons.length}
         paginado={paginado}
