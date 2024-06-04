@@ -13,6 +13,7 @@ import {
   BYTYPE,
   GET_ALL_TYPES,
   BBDAPI,
+  RELOAD,
 } from "./actions-types";
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -140,6 +141,13 @@ export const byBddOrApi = (payload) => {
   console.log(payload + " console API o BBD");
   return {
     type: BBDAPI,
+    payload: payload,
+  };
+};
+
+export const reloadFilter = () => {
+  return {
+    type: RELOAD,
     payload: payload,
   };
 };

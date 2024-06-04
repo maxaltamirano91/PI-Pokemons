@@ -7,15 +7,16 @@
   width: 300px;
 }
 .login-screen {
-  background-color: #03009bb2;
-
+  /* background-color: #03009bb2; */
+  background-color: rgb(114, 1, 1);
   padding: 20px;
   border-radius: 5px;
 }
 
 .app-title {
   text-align: center;
-  color: #ffe607;
+  /* color: #ffe607; */
+  color: black;
 }
 
 .login-form {
@@ -26,12 +27,12 @@
 }
 
 .user {
-  color: #c7b301;
+  color: #a7a7a7;
 }
 
 input {
   text-align: center;
-  background-color: #ffee03a7;
+  background-color: #e5555563;
   border: 2px solid transparent;
   border-radius: 3px;
   font-size: 16px;
@@ -42,14 +43,14 @@ input {
 }
 
 input:focus {
-  border: 2px solid #3498db;
+  border: 2px solid #db3434;
   box-shadow: none;
 }
 
 .btn {
   border: 2px solid transparent;
-  background: #3498db;
-  color: #ffffff;
+  background: #000000;
+  color: #d00b0b;
   font-size: 16px;
   line-height: 25px;
   padding: 10px 0;
@@ -64,7 +65,7 @@ input:focus {
 }
 
 .btn:hover {
-  background-color: #2980b9;
+  background-color: #ba4b4b;
 }
 
 .login-link {

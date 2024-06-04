@@ -9,3 +9,4 @@ export const ORDER = "ORDER";
 export const BYATTACK = "BYATTACK";
 export const BYTYPE = "BYTYPE";
 export const BBDAPI = "BBDAPI";
+export const RELOAD = "RELOAD";

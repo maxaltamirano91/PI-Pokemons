@@ -7,6 +7,7 @@ const Paginado = ({ pokemonsPorPagina, pokemons, paginado }) => {
   for (let i = 0; i < Math.ceil(pokemons / pokemonsPorPagina); i++) {
     pageNumber.push(i + 1);
   }
+
   return (
     <nav className="pagination-container">
       <ul className="pagination">

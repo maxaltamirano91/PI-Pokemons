@@ -10,6 +10,7 @@ import {
   BYTYPE,
   GET_ALL_TYPES,
   BBDAPI,
+  RELOAD,
 } from "./actions-types";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   pokemonsDetail: [],
   typos: [],
   allPokemon: [],
+  filtro: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -96,27 +98,55 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: filter,
+        filtro: filter,
       };
 
+    // case RELOAD:
+    //   return {
+    //     ...state,
+    //   };
+
     case BBDAPI:
-      if (action.payload === "bbd") {
-        const bbd = state.allPokemon;
-        const filtro = bbd.filter((el) => {
-          return el.createdInDb;
-        });
-        return {
-          ...state,
-          pokemon: filtro,
-        };
+      if (state.filtro) {
+        const bd = state.filtro;
+        if (action.payload === "bbd") {
+          const filtro = bd.filter((el) => {
+            return el.createdInDb;
+          });
+          return {
+            ...state,
+            pokemon: filtro,
+          };
+        } else {
+          const ap = state.filtro;
+          const filtro = ap.filter((el) => {
+            return !el.createdInDb;
+          });
+          return {
+            ...state,
+            pokemon: filtro,
+          };
+        }
       } else {
-        const api = state.allPokemon;
-        const filtro = api.filter((el) => {
-          return !el.createdInDb;
-        });
-        return {
-          ...state,
-          pokemon: filtro,
-        };
+        const bbd = state.allPokemon;
+        if (action.payload === "bbd") {
+          const filtro = bbd.filter((el) => {
+            return el.createdInDb;
+          });
+          return {
+            ...state,
+            pokemon: filtro,
+          };
+        } else {
+          const api = state.allPokemon;
+          const filtro = api.filter((el) => {
+            return !el.createdInDb;
+          });
+          return {
+            ...state,
+            pokemon: filtro,
+          };
+        }
       }
 
     default:

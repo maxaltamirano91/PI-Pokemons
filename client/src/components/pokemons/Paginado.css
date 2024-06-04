@@ -14,15 +14,12 @@
   margin: 0 5px;
 }
 
-.buttonFilter {
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.buttonFilter:hover {
+  background-color: var(--color-orange);
+  color: var(--color-blue);
 }
 
-.buttonFilter:hover {
-  background-color: #0056b3;
+.buttonFilter.active {
+  background-color: var(--color-orange);
+  color: var(--color-blue);
 }

@@ -8,6 +8,7 @@ import {
   attackFunction,
   orderByType,
   byBddOrApi,
+  reloadFilter,
 } from "../../redux/actions";
 
 import Cards from "../cards/Cards";
@@ -66,6 +67,11 @@ const Pokemons = () => {
     dispatch(byBddOrApi(event.target.value));
   };
 
+  const handleReload = (e) => {
+    e.preventDefault();
+    dispatch(getAllPokemons());
+  };
+
   const [paginaActual, setPaginaActual] = useState(1);
   const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
   const indexUltimoPokemon = paginaActual * pokemonsPorPagina;
@@ -98,17 +104,7 @@ const Pokemons = () => {
                 Z-A
               </option>
             </select>
-            <select
-              className="buttonFilter"
-              onChange={() => handleBbdApi(event)}
-            >
-              <option className="buttonFilter" value="bbd">
-                BBD
-              </option>
-              <option className="buttonFilter" value="api">
-                API
-              </option>
-            </select>
+
             <select
               className="buttonFilter"
               onChange={() => handleAttak(event)}
@@ -174,6 +170,20 @@ const Pokemons = () => {
                 electric
               </option>
             </select>
+            <select
+              className="buttonFilter"
+              onChange={() => handleBbdApi(event)}
+            >
+              <option className="buttonFilter" value="bbd">
+                BBD
+              </option>
+              <option className="buttonFilter" value="api">
+                API
+              </option>
+            </select>
+            <button className="buttonFilter" onClick={(e) => [handleReload(e)]}>
+              Reload
+            </button>
           </div>
         </div>
       </div>
