@@ -4,7 +4,7 @@ const createNewPokemon = async (req, res) => {
   try {
     const { name, image, hp, attack, defense, speed, height, weight, type } =
       req.body;
-
+    console.log(type + " CONSOLE DE TYPE HANLDER");
     if ((name, image)) {
       const newPokemon = await createPokemon(
         name,

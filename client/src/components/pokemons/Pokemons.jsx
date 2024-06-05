@@ -44,7 +44,7 @@ const Pokemons = () => {
     } else {
       setSearchResult(event.target.value);
     }
-    console.log(event.target.value);
+    console.log(event.target.value + " console name");
   };
 
   const handleSubmit = (event) => {

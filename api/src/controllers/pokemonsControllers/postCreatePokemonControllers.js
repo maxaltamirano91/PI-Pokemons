@@ -23,13 +23,15 @@ const createPokemon = async (
       weight,
     });
 
+    console.log(type + " console de TYPE ");
+
     if (!Array.isArray(type)) {
       type = [type];
     }
 
-    const newType = await Type.findOne({ where: { name: type } });
+    const newType = await Type.findAll({ where: { name: type } });
+    console.log(newType.name + " console NEWTYPE.NAME");
     await newPokemon.addTypes(newType);
-    // return newPokemon;
 
     const finalPokemon = {
       id: newPokemon.id,
@@ -41,7 +43,9 @@ const createPokemon = async (
       speed: newPokemon.speed,
       height: newPokemon.height,
       weight: newPokemon.weight,
-      types: newType.map((type) => type.name),
+      // types: newType.map((type) => type.name),
+      //! cambiar en todos lados typeS por type
+      types: newType,
     };
     console.log("Este es el finalPokemon", finalPokemon);
     return finalPokemon;
