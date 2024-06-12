@@ -29,6 +29,7 @@ const getById = async (id) => {
         speed: nameBBD.speed,
         height: nameBBD.height,
         weight: nameBBD.weight,
+        createdInDb: nameBBD.createdInDb,
         types: [nameBBD.types.map((type) => type.name).join(", ")],
       };
       return final;

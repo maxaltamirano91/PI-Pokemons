@@ -30,7 +30,7 @@ const createPokemon = async (
     }
 
     const newType = await Type.findAll({ where: { name: type } });
-    console.log(newType.name + " console NEWTYPE.NAME");
+
     await newPokemon.addTypes(newType);
 
     const finalPokemon = {
