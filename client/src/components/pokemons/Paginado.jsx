@@ -14,16 +14,21 @@ const Paginado = ({ pokemonsPorPagina, pokemons, paginado, paginaActual }) => {
         <ul className="pagination">
           {pageNumber.map((number) => (
             <li key={number} className="page-item">
-              <button onClick={() => paginado(number)} className="buttonFilter">
+              <button
+                onClick={() => paginado(number)}
+                className={`buttonFilter ${
+                  number === paginaActual ? "active" : ""
+                }`}
+              >
                 {number}
               </button>
             </li>
           ))}
         </ul>
       </nav>
-      <li className="page-currten">
+      {/* <li className="page-currten">
         <button className="buttonActive">{paginaActual}</button>
-      </li>
+      </li> */}
     </>
   );
 };

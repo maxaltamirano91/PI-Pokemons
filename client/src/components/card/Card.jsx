@@ -5,7 +5,6 @@ import "./Card.css";
 const Card = ({ pokemon }) => {
   const { name, image, id, types } = pokemon;
 
-  // const typeList = types && types.length > 0 ? types[0].split(", ") : [];
   const typeList = types && types.length > 0 ? types.join(", ") : [];
 
   return (
@@ -21,10 +20,6 @@ const Card = ({ pokemon }) => {
           </div>
           <div className="pokemon-details">
             <p>Type: {typeList}</p>
-
-            {/* {typeList.map((type, index) => (
-              <p key={index}>{type}</p>
-            ))} */}
 
             <div className="pokemon-name">
               <p>{name}</p>

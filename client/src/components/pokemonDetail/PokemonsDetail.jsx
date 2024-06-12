@@ -1,31 +1,42 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getPokemonDetail, clear } from "../../redux/actions";
-
-import NavBar from "../navBar/NavBar";
+import {
+  getPokemonDetail,
+  clear,
+  deletePokemon,
+  getAllPokemons,
+} from "../../redux/actions";
 
 import "./pokemonDetail.css";
+import NavBar from "../navBar/NavBar";
 
 const PokemonsDetail = () => {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const pokemonDetail = useSelector((state) => state.pokemonsDetail);
 
   useEffect(() => {
     dispatch(getPokemonDetail(id));
+
     return () => {
       dispatch(clear());
     };
   }, [id, dispatch]);
 
+  const handleDelete = () => {
+    dispatch(deletePokemon(id));
+    alert("Pokemon eliminado");
+    navigate("/home");
+  };
+
   return (
     <div>
       <NavBar />
       <div className="allDetail">
-        <div className="Card">
+        <div className="CardDetail">
           <img className="img" src={pokemonDetail[0]?.image} alt="" />
         </div>
         <div className="detail">
@@ -44,6 +55,19 @@ const PokemonsDetail = () => {
             ))}
           </h3>
         </div>
+        {pokemonDetail.map((el) => {
+          return (
+            el.createdInDb && (
+              <button
+                key={el.id}
+                onClick={handleDelete}
+                className="deleteButton"
+              >
+                DELETE
+              </button>
+            )
+          );
+        })}
       </div>
     </div>
   );

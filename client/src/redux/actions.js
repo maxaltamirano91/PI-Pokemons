@@ -12,7 +12,11 @@ import {
   BYTYPE,
   GET_ALL_TYPES,
   BBDAPI,
+  ERRORALERT,
+  DELETE_POKEMON,
+  CLEAR_ERRORALERT,
 } from "./actions-types";
+import NavBar from "../components/navBar/NavBar";
 
 export const getAllPokemons = () => async (dispatch) => {
   try {
@@ -63,13 +67,16 @@ export const getPokemonByName = (name) => {
     try {
       const response = await axios.get(`/pokemons?name=${name}`);
       const pokemon = response.data.pokemonName;
-
       await dispatch({
         type: GET_POKEMON_BY_NAME,
         payload: pokemon,
       });
     } catch (error) {
-      throw new Error("No se encuentra un Pokemon con ese nombre ");
+      console.log(error + " CONSOLE ALERTA ACTIION");
+      await dispatch({
+        type: ERRORALERT,
+        payload: " No se encontró el Pokemon, intente con otro nombre",
+      });
     }
   };
 };
@@ -134,5 +141,29 @@ export const byBddOrApi = (payload) => {
   return {
     type: BBDAPI,
     payload: payload,
+  };
+};
+
+export const clearError = () => {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_ERRORALERT,
+      payload: "",
+    });
+  };
+};
+
+export const deletePokemon = (id) => {
+  console.log(id);
+  return async (dispatch) => {
+    try {
+      await axios.put(`/pokemons?id=${id}`);
+      dispatch({
+        type: DELETE_POKEMON,
+        payload,
+      });
+    } catch (error) {
+      throw Error(" no se encontro el ID  para eliminar ");
+    }
   };
 };

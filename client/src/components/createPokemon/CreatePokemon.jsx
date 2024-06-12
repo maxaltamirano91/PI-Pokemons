@@ -22,7 +22,7 @@ const CreatePokemon = () => {
     speed: "",
     height: "",
     weight: "",
-    type: "",
+    type: [],
   });
 
   const [error, setError] = useState({
@@ -34,7 +34,7 @@ const CreatePokemon = () => {
     speed: "",
     height: "",
     weight: "",
-    type: "",
+    type: [],
   });
 
   const validate = (form) => {
@@ -106,6 +106,29 @@ const CreatePokemon = () => {
     validate({ ...form, [property]: value }, setError());
   };
 
+  const handleTipo = (event) => {
+    const tipo = [...form.type];
+
+    let tipoRepetido = false;
+
+    for (let i = 0; i < tipo.length; i++) {
+      if (tipo[i] === event.target.value) {
+        tipoRepetido = true;
+      }
+    }
+
+    if (tipoRepetido) {
+      alert(" no se pueden repetir los tipos");
+    } else {
+      if (tipo.length < 2) {
+        tipo.push(event.target.value);
+        setForm({ ...form, type: tipo });
+      } else {
+        alert(" Solo puedes seleccionar dos tipos ");
+      }
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(" form enviado");
@@ -117,7 +140,6 @@ const CreatePokemon = () => {
     <div className="form-container">
       <p className="title">Create</p>
       <form onSubmit={handleSubmit} className="maxi">
-        {/* <div className="FlexContainer"> */}
         <div className="column">
           <div className="input-group">
             <label htmlFor="name">Name</label>
@@ -147,7 +169,7 @@ const CreatePokemon = () => {
           <div className="input-group">
             <label htmlFor="hp">Hp</label>
             <input
-              type="text"
+              type="number"
               name="hp"
               onChange={handleChange}
               value={form.hp}
@@ -159,7 +181,7 @@ const CreatePokemon = () => {
           <div className="input-group">
             <label htmlFor="attack">Attack</label>
             <input
-              type="text"
+              type="number"
               name="attack"
               onChange={handleChange}
               value={form.attack}
@@ -171,7 +193,7 @@ const CreatePokemon = () => {
           <div className="input-group">
             <label htmlFor="defense">Defense</label>
             <input
-              type="text"
+              type="number"
               name="defense"
               onChange={handleChange}
               value={form.defense}
@@ -184,7 +206,7 @@ const CreatePokemon = () => {
           <div className="input-group">
             <label htmlFor="speed">Speed</label>
             <input
-              type="text"
+              type="number"
               name="speed"
               onChange={handleChange}
               value={form.speed}
@@ -196,7 +218,7 @@ const CreatePokemon = () => {
           <div className="input-group">
             <label htmlFor="height">Height</label>
             <input
-              type="text"
+              type="number"
               name="height"
               onChange={handleChange}
               value={form.height}
@@ -208,7 +230,7 @@ const CreatePokemon = () => {
           <div className="input-group">
             <label htmlFor="weight">Weight</label>
             <input
-              type="text"
+              type="number"
               name="weight"
               onChange={handleChange}
               value={form.weight}
@@ -218,14 +240,8 @@ const CreatePokemon = () => {
           </div>
 
           <div className="input-group">
-            <label htmlFor="type">Type</label>
-            <select
-              className="input-group"
-              name="type"
-              value={form.type}
-              onChange={handleChange}
-            >
-              <option value="all">All Types</option>
+            <label htmlFor="type">Types: You can choose 2</label>
+            <select className="input-group" onChange={handleTipo}>
               {typePokemon
                 ? typePokemon.map((t) => (
                     <option key={t.id} value={t.name}>
@@ -234,7 +250,15 @@ const CreatePokemon = () => {
                   ))
                 : []}
             </select>
-            <p>{error.type}</p>
+            <select className="input-group" onChange={handleTipo}>
+              {typePokemon
+                ? typePokemon.map((t) => (
+                    <option key={t.id} value={t.name}>
+                      {t.name}
+                    </option>
+                  ))
+                : []}
+            </select>
           </div>
           <div className="input-group">
             <button className="sign" type="submit">
@@ -242,7 +266,6 @@ const CreatePokemon = () => {
             </button>
           </div>
         </div>
-        {/* </div> */}
       </form>
     </div>
   );

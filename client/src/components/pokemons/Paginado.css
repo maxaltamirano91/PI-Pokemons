@@ -20,16 +20,49 @@
   margin: 10px;
 }
 
+.buttonFilter {
+  padding: 10px;
+  border: none;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
 .buttonFilter:hover {
   background-color: var(--color-orange);
   color: var(--color-blue);
 }
 
 .buttonFilter.active {
-  background-color: var(--color-orange);
-  color: var(--color-blue);
+  background-color: rgb(255, 200, 0);
+  color: black;
 }
 
-.buttonActive {
-  color: blue;
+/* .pagination-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-currten {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.buttonFilter {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+} */

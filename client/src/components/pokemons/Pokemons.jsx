@@ -8,19 +8,22 @@ import {
   attackFunction,
   orderByType,
   byBddOrApi,
+  clearError,
 } from "../../redux/actions";
 
 import Cards from "../cards/Cards";
 import NavBar from "../navBar/NavBar";
 import Paginado from "./Paginado";
+import Alerta from "../alerta/Alerta";
 
 import "./Pokemon.css";
 
 const Pokemons = () => {
   const pokemons = useSelector((state) => state.pokemon);
-
+  const alertaName = useSelector((state) => state.errorAlert);
   const dispatch = useDispatch();
 
+  const [loader, setLoader] = useState(false);
   const [searchResult, setSearchResult] = useState("");
 
   const [paginaActual, setPaginaActual] = useState(1);
@@ -37,9 +40,18 @@ const Pokemons = () => {
     console.log(numeroPagina + " console NUMERO PAGINA");
   };
 
+  const mostrarLoader = () => {
+    setLoader(true);
+  };
+
+  const ocultarLoader = () => {
+    setLoader(false);
+  };
+
   const handleChange = (event) => {
     event.preventDefault();
     if (event.target.value === "") {
+      dispatch(clearError());
       dispatch(getAllPokemons());
     } else {
       setSearchResult(event.target.value);
@@ -53,7 +65,11 @@ const Pokemons = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllPokemons());
+    mostrarLoader();
+    dispatch(getAllPokemons()).then(() => {
+      ocultarLoader();
+    });
+
     return () => {
       dispatch(clearPokemon());
     };
@@ -195,6 +211,17 @@ const Pokemons = () => {
       <div>
         <Cards allPokemons={pokemonsActuales} />
       </div>
+
+      {loader && (
+        <div className="loader-container">
+          <div className="pokeball"></div>
+        </div>
+      )}
+      {alertaName && (
+        <div>
+          <Alerta mensaje={alertaName} />
+        </div>
+      )}
     </div>
   );
 };

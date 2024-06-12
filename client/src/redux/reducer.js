@@ -10,6 +10,9 @@ import {
   BYTYPE,
   GET_ALL_TYPES,
   BBDAPI,
+  ERRORALERT,
+  CLEAR_ERRORALERT,
+  DELETE_POKEMON,
 } from "./actions-types";
 
 const initialState = {
@@ -19,10 +22,18 @@ const initialState = {
   allPokemon: [],
   typeFilter: "all",
   pokemonFiltrado: [],
+  errorAlert: "",
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case DELETE_POKEMON:
+      return {
+        ...state,
+        pokemon: pokemon,
+        allPokemon: pokemon,
+      };
+
     case GET_ALL_POKEMONS:
       return {
         ...state,
@@ -131,6 +142,18 @@ const reducer = (state = initialState, action) => {
           pokemon: action.payload === "all" ? state.allPokemon : filterOrigen,
         };
       }
+
+    case ERRORALERT:
+      return {
+        ...state,
+        errorAlert: action.payload,
+      };
+
+    case CLEAR_ERRORALERT:
+      return {
+        ...state,
+        errorAlert: action.payload,
+      };
 
     default:
       return state;

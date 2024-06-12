@@ -9,3 +9,6 @@ export const ORDER = "ORDER";
 export const BYATTACK = "BYATTACK";
 export const BYTYPE = "BYTYPE";
 export const BBDAPI = "BBDAPI";
+export const ERRORALERT = "ERRORALERT";
+export const CLEAR_ERRORALERT = "CLEAR_ERRORALERT";
+export const DELETE_POKEMON = "DELETE_POKEMON";

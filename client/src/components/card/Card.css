@@ -12,8 +12,8 @@
 }
 
 .pokemon-types {
-  font-size: 16px; /* Tamaño de fuente para los tipos */
-  color: #c10000; /* Color de texto para los tipos */
+  font-size: 16px;
+  color: #c10000;
 }
 
 .pokemon-card:hover {
@@ -25,7 +25,7 @@
 .pokemon-img-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Ajusta el espaciado entre las tarjetas */
+  justify-content: space-between;
   margin: -10px;
 }
 
